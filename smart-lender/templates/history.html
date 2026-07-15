@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Lender AI - Credit History{% endblock %}
+
+{% block content %}
+<section class="history-section container" style="padding-top: 60px; padding-bottom: 120px;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb fade-in">
+        <span>Dashboard</span> <i class="fa-solid fa-chevron-right"></i> <span class="active">Prediction History Log</span>
+    </div>
+    
+    <div class="section-header fade-in" style="margin-bottom: 40px;">
+        <h2 class="section-title">Credit Assessment Log</h2>
+        <p class="section-subtitle">Audit previous credit predictions, search by parameters, filter status, and review applicant assets.</p>
+    </div>
+
+    <!-- Toolbar: Search, Sort & Filter Tabs -->
+    <div class="history-toolbar glass-card fade-in" style="padding: 25px; border-radius: 20px; margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center;">
+        <!-- Search bar -->
+        <div class="search-box" style="flex: 1; min-width: 280px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass search-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-sec);"></i>
+            <input type="text" id="historySearch" placeholder="Search by Applicant ID, Name, Loan Type, etc..." style="width: 100%; padding: 12px 12px 12px 45px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-primary); font-family: var(--font-primary); color: var(--primary);">
+        </div>
+
+        <!-- Sort and Filters Wrapper -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+            <!-- Sort dropdown -->
+            <div class="sort-box" style="display: flex; align-items: center; gap: 8px;">
+                <label for="historySort" style="font-weight: 700; font-size: 0.9rem; color: var(--primary);">Sort By:</label>
+                <select id="historySort" style="padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-primary); font-family: var(--font-primary); color: var(--primary); font-weight: 600;">
+                    <option value="date-new">Date: Newest First</option>
+                    <option value="date-old">Date: Oldest First</option>
+                    <option value="amount-high">Amount: High to Low</option>
+                    <option value="amount-low">Amount: Low to High</option>
+                    <option value="score-high">Eligibility: High to Low</option>
+                    <option value="score-low">Eligibility: Low to High</option>
+                </select>
+            </div>
+
+            <!-- Filter tabs -->
+            <div class="filter-tabs" id="filterTabs" style="display: flex; gap: 8px; background: var(--bg-primary); padding: 5px; border-radius: 10px; border: 1px solid var(--border);">
+                <button class="filter-tab active" data-filter="All" style="border: none; background: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s;">All</button>
+                <button class="filter-tab" data-filter="Approved" style="border: none; background: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Approved</button>
+                <button class="filter-tab" data-filter="Moderate Risk" style="border: none; background: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Moderate Risk</button>
+                <button class="filter-tab" data-filter="Rejected" style="border: none; background: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Rejected</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Cards Container -->
+    <div class="history-cards-container fade-in" id="historyCardsContainer" style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Javascript renders cards here -->
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="history-actions-footer fade-in" style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center;">
+        <button class="btn btn-outline border-danger text-danger" id="clearHistoryBtn" style="padding: 12px 24px; border-radius: 12px; font-weight: 700; border: 1.5px solid var(--danger); background: transparent; color: var(--danger); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">
+            <i class="fa-solid fa-trash-can"></i> Clear History
+        </button>
+        <a href="/predict" class="btn btn-primary" style="padding: 12px 24px; border-radius: 12px; font-weight: 700; background: var(--secondary); color: white; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-rotate-right"></i> Predict Again
+        </a>
+    </div>
+</section>
+
+<!-- History Log Engine (Client-Side Javascript) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const historyContainer = document.getElementById('historyCardsContainer');
+        const searchInput = document.getElementById('historySearch');
+        const filterTabs = document.getElementById('filterTabs');
+        const sortSelect = document.getElementById('historySort');
+        const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+        
+        let activeFilter = 'All';
+        let searchQuery = '';
+        let sortOption = 'date-new';
+        let historyRecords = [];
+
+        // 1. Load data from LocalStorage
+        function loadHistory() {
+            historyRecords = JSON.parse(localStorage.getItem('smart_lender_history') || '[]');
+            renderHistory();
+        }
+
+        // 2. Render Records
+        function renderHistory() {
+            historyContainer.innerHTML = '';
+            
+            // Apply searches and filters
+            let filteredRecords = historyRecords.filter(record => {
+                // Status Filter
+                const matchesFilter = (activeFilter === 'All') || (record.result === activeFilter);
+                
+                // Text Search Query
+                const matchesSearch = 
+                    record.id.toLowerCase().includes(searchQuery) ||
+                    (record.name && record.name.toLowerCase().includes(searchQuery)) ||
+                    (record.loan_type && record.loan_type.toLowerCase().includes(searchQuery)) ||
+                    record.amount.toLowerCase().includes(searchQuery) ||
+                    record.date.toLowerCase().includes(searchQuery) ||
+                    record.result.toLowerCase().includes(searchQuery) ||
+                    (record.risk && record.risk.toLowerCase().includes(searchQuery));
+
+                return matchesFilter && matchesSearch;
+            });
+
+            // Apply Sorting
+            filteredRecords.sort((a, b) => {
+                const numA = parseFloat(a.amount.replace(/[^0-9.]/g, '')) || 0;
+                const numB = parseFloat(b.amount.replace(/[^0-9.]/g, '')) || 0;
+                const scoreA = parseFloat(a.eligibility.replace(/[^0-9.]/g, '')) || 0;
+                const scoreB = parseFloat(b.eligibility.replace(/[^0-9.]/g, '')) || 0;
+                
+                switch (sortOption) {
+                    case 'date-new':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'date-old':
+                        return new Date(a.date) - new Date(b.date);
+                    case 'amount-high':
+                        return numB - numA;
+                    case 'amount-low':
+                        return numA - numB;
+                    case 'score-high':
+                        return scoreB - scoreA;
+                    case 'score-low':
+                        return scoreA - scoreB;
+                    default:
+                        return 0;
+                }
+            });
+
+            if (filteredRecords.length === 0) {
+                // Empty state card
+                historyContainer.innerHTML = `
+                    <div class="glass-card history-empty-state fade-in" style="padding: 60px; text-align: center; border-radius: 20px;">
+                        <i class="fa-solid fa-folder-open empty-icon" style="font-size: 3.5rem; color: var(--slate-300); margin-bottom: 20px;"></i>
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: var(--primary);">No Records Found</h3>
+                        <p style="color: var(--text-sec); max-width: 400px; margin: 0 auto;">${historyRecords.length === 0 ? "No loan evaluations have been performed on this terminal yet." : "No records match your active search filters."}</p>
+                        ${historyRecords.length === 0 ? '<a href="/predict" class="btn btn-primary" style="margin-top: 20px; display: inline-block; background: var(--secondary); color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: 600;">Run First Evaluation</a>' : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            // Render list
+            filteredRecords.forEach((record, index) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card history-card fade-in';
+                card.style.padding = '30px';
+                card.style.borderRadius = '20px';
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.style.boxShadow = 'var(--glass-shadow)';
+                
+                // Color mapping
+                let badgeClass = 'badge-success';
+                let badgeBg = 'rgba(16, 185, 129, 0.1)';
+                let badgeColor = 'var(--success)';
+                if (record.result === 'Moderate Risk') {
+                    badgeClass = 'badge-warning';
+                    badgeBg = 'rgba(245, 158, 11, 0.1)';
+                    badgeColor = 'var(--warning)';
+                } else if (record.result === 'Rejected') {
+                    badgeClass = 'badge-danger';
+                    badgeBg = 'rgba(239, 68, 68, 0.1)';
+                    badgeColor = 'var(--danger)';
+                }
+
+                // Risk Badge Class mapping
+                let riskBg = 'rgba(16, 185, 129, 0.08)';
+                let riskColor = 'var(--success)';
+                if (record.risk === 'Medium Risk') {
+                    riskBg = 'rgba(245, 158, 11, 0.08)';
+                    riskColor = 'var(--warning)';
+                } else if (record.risk === 'High Risk') {
+                    riskBg = 'rgba(239, 68, 68, 0.08)';
+                    riskColor = 'var(--danger)';
+                }
+
+                card.innerHTML = `
+                    <div class="h-card-grid" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="h-card-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                            <span class="h-id" style="font-weight: 800; font-size: 1.1rem; color: var(--primary);">${record.id}</span>
+                            <span class="h-date" style="font-size: 0.85rem; color: var(--text-sec); font-weight: 600;"><i class="fa-regular fa-clock"></i> ${record.date}</span>
+                        </div>
+                        <div class="h-card-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; padding: 5px 0;">
+                            <div class="h-metric">
+                                <span class="h-label" style="display: block; font-size: 0.8rem; color: var(--text-sec); font-weight: 600;">Applicant Name</span>
+                                <span class="h-val font-semibold" style="font-weight: 700; color: var(--primary);">${record.name || 'Applicant'}</span>
+                            </div>
+                            <div class="h-metric">
+                                <span class="h-label" style="display: block; font-size: 0.8rem; color: var(--text-sec); font-weight: 600;">Loan Type</span>
+                                <span class="h-val font-semibold" style="font-weight: 700; color: var(--secondary);">${record.loan_type || 'Home Loan'}</span>
+                            </div>
+                            <div class="h-metric">
+                                <span class="h-label" style="display: block; font-size: 0.8rem; color: var(--text-sec); font-weight: 600;">Loan Amount</span>
+                                <span class="h-val font-semibold text-secondary" style="font-weight: 700; color: var(--accent);">${record.amount}</span>
+                            </div>
+                            <div class="h-metric">
+                                <span class="h-label" style="display: block; font-size: 0.8rem; color: var(--text-sec); font-weight: 600;">Eligibility %</span>
+                                <span class="h-val font-semibold" style="font-weight: 700; color: ${badgeColor};">${record.eligibility}</span>
+                            </div>
+                            <div class="h-metric">
+                                <span class="h-label" style="display: block; font-size: 0.8rem; color: var(--text-sec); font-weight: 600;">Risk Category</span>
+                                <span class="h-val font-semibold" style="display: inline-block; margin-top: 3px; font-weight: 700; font-size: 0.8rem; background: ${riskBg}; color: ${riskColor}; padding: 2px 8px; border-radius: 6px;">${record.risk || 'Low Risk'}</span>
+                            </div>
+                        </div>
+                        <div class="h-card-footer" style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 15px; margin-top: 5px;">
+                            <span class="risk-badge" style="background: ${badgeBg}; color: ${badgeColor}; font-weight: 800; border-radius: 6px; padding: 4px 10px; font-size: 0.85rem;">
+                                <i class="fa-solid fa-circle badge-dot" style="font-size: 0.4rem; vertical-align: middle; margin-right: 5px;"></i> ${record.result}
+                            </span>
+                            <a href="/profile?id=${record.id}" class="btn btn-outline btn-sm" style="padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px; border: 1.5px solid var(--border); color: var(--primary);">
+                                View Applicant Profile <i class="fa-solid fa-arrow-right-to-bracket" style="font-size: 0.8rem;"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                historyContainer.appendChild(card);
+            });
+        }
+
+        // 3. Search Filter Event
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderHistory();
+        });
+
+        // 4. Sort Event
+        sortSelect.addEventListener('change', (e) => {
+            sortOption = e.target.value;
+            renderHistory();
+        });
+
+        // 5. Filter Tab Event
+        filterTabs.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-tab')) {
+                // Clear active states
+                filterTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.style.background = 'none';
+                    tab.style.color = 'var(--slate-600)';
+                });
+                
+                // Set active
+                e.target.classList.add('active');
+                e.target.style.background = 'var(--secondary)';
+                e.target.style.color = 'white';
+                activeFilter = e.target.getAttribute('data-filter');
+                renderHistory();
+            }
+        });
+
+        // Apply active filter styles on load
+        function styleFilterTabs() {
+            filterTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                if (tab.classList.contains('active')) {
+                    tab.style.background = 'var(--secondary)';
+                    tab.style.color = 'white';
+                } else {
+                    tab.style.background = 'none';
+                    tab.style.color = 'var(--slate-600)';
+                }
+            });
+        }
+        
+        styleFilterTabs();
+        filterTabs.addEventListener('click', styleFilterTabs);
+
+        // 6. Clear History Event
+        clearHistoryBtn.addEventListener('click', () => {
+            if (historyRecords.length === 0) {
+                alert("History is already empty.");
+                return;
+            }
+            
+            const confirmed = confirm("Are you sure you want to delete every stored prediction from your local history? This action cannot be undone.");
+            if (confirmed) {
+                localStorage.removeItem('smart_lender_history');
+                loadHistory();
+                alert("Prediction history cleared successfully.");
+            }
+        });
+
+        // Initialize Page
+        loadHistory();
+    });
+</script>
+{% endblock %}

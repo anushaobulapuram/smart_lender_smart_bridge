@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Lender AI - Core Features{% endblock %}
+
+{% block content %}
+<section class="capabilities-section container" style="padding-top: 60px; padding-bottom: 120px;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb fade-in">
+        <span>Platform</span> <i class="fa-solid fa-chevron-right"></i> <span class="active">Core Features</span>
+    </div>
+
+    <div class="section-heading-minimal fade-in">
+        <h2 class="section-title-minimal">Core Capabilities</h2>
+        <p class="section-subtitle-minimal">Discover the major features of Smart Lender AI.</p>
+    </div>
+
+    <!-- Small Introduction Paragraph -->
+    <div class="fade-in" style="max-width: 800px; margin: 0 auto 50px auto; text-align: center; line-height: 1.7; color: var(--text-sec); font-size: 16px;">
+        Smart Lender AI leverages advanced data science pipelines to perform immediate credit risk checks. Below are the key feature modules integrated into this evaluation system, designed to make loan assessment simple, reliable, and accessible for credit analysts.
+    </div>
+    
+    <div class="features-grid-minimal">
+        <!-- Feature 1 -->
+        <div class="feature-card-minimal fade-in" style="animation-delay: 0.05s;">
+            <div class="feature-icon-minimal feature-icon-blue">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>Machine Learning</h3>
+            <p>Runs ensemble random forest classification models to determine safe applicant approval brackets.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card-minimal fade-in" style="animation-delay: 0.1s;">
+            <div class="feature-icon-minimal feature-icon-indigo">
+                <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h3>Fast Prediction</h3>
+            <p>Instant scoring yields predictions in milliseconds, increasing credit team audit efficiency.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card-minimal fade-in" style="animation-delay: 0.15s;">
+            <div class="feature-icon-minimal feature-icon-green">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3>Secure Analysis</h3>
+            <p>Operates entirely locally with client-side logging, keeping institutional and customer data safe.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card-minimal fade-in" style="animation-delay: 0.2s;">
+            <div class="feature-icon-minimal feature-icon-orange">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Easy to Use</h3>
+            <p>Designed with intuitive sliders and asset checklists for clean credit workflow management.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

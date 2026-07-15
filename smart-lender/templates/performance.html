@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Lender AI - Model Performance{% endblock %}
+
+{% block content %}
+<section class="container" style="padding-top: 60px; padding-bottom: 120px;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb fade-in">
+        <span>Platform</span> <i class="fa-solid fa-chevron-right"></i> <span class="active">Model Performance</span>
+    </div>
+
+    <div class="section-heading-minimal fade-in">
+        <h2 class="section-title-minimal">Project Statistics</h2>
+        <p class="section-subtitle-minimal">Machine Learning Model Performance</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid-minimal fade-in" style="margin-top: 40px; margin-bottom: 60px;">
+        <div class="stat-card-minimal">
+            <div class="stat-num-minimal">4269+</div>
+            <div class="stat-label-minimal">Training Records</div>
+        </div>
+        <div class="stat-card-minimal">
+            <div class="stat-num-minimal">98%</div>
+            <div class="stat-label-minimal">Prediction Accuracy</div>
+        </div>
+        <div class="stat-card-minimal">
+            <div class="stat-num-minimal">4</div>
+            <div class="stat-label-minimal">Machine Learning Algorithms</div>
+        </div>
+        <div class="stat-card-minimal">
+            <div class="stat-num-minimal">&lt;2 Seconds</div>
+            <div class="stat-label-minimal">Prediction Time</div>
+        </div>
+    </div>
+
+    <!-- Explanatory Paragraph -->
+    <div class="glass-card fade-in" style="padding: 30px 40px; max-width: 900px; margin: 0 auto; line-height: 1.75; color: var(--text-sec);">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-info text-secondary"></i> Performance Breakdown Definitions
+        </h3>
+        <p style="margin-bottom: 12px; font-size: 14.5px;">
+            <strong>Training Records (4,269+):</strong> The model is trained on a comprehensive portfolio dataset representing over 4,000 historical credit cases, including diverse borrower profile settings, and asset combinations to ensure robust model generalization.
+        </p>
+        <p style="margin-bottom: 12px; font-size: 14.5px;">
+            <strong>Prediction Accuracy (98%):</strong> During test folds evaluations, the ensemble classifiers achieved a classification accuracy score of 98%, ensuring high-precision mapping of credit risk and lowering false positive rates.
+        </p>
+        <p style="margin-bottom: 12px; font-size: 14.5px;">
+            <strong>Machine Learning Algorithms (4):</strong> We benchmarked and integrated four distinct classification frameworks—namely Random Forest, XGBoost, Support Vector Machines (SVM), and Logistic Regression—selecting the optimal ensemble structure for risk categorizations.
+        </p>
+        <p style="font-size: 14.5px;">
+            <strong>Prediction Time (&lt;2 Seconds):</strong> The model scoring pipeline is optimized for high-speed local processing, returning applicant eligibility percentages and risk classes in less than two seconds.
+        </p>
+    </div>
+</section>
+{% endblock %}

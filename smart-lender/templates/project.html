@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Lender AI - Project Documentation{% endblock %}
+
+{% block content %}
+<section class="container" style="padding-top: 60px; padding-bottom: 120px;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb fade-in">
+        <span>Dashboard</span> <i class="fa-solid fa-chevron-right"></i> <span class="active">Project Documentation</span>
+    </div>
+    
+    <div class="section-header fade-in">
+        <h2 class="section-title">Project Documentation</h2>
+        <p class="section-subtitle">A deep dive into the machine learning algorithms, engineering frameworks, workflows, and objectives.</p>
+    </div>
+
+    <!-- Section 1: Project Overview -->
+    <div class="home-section fade-in" style="padding-bottom: 80px;">
+        <div class="about-overview-card glass-card">
+            <div class="card-title-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                <i class="fa-solid fa-square-poll-vertical overview-icon" style="font-size: 22px; color: var(--secondary);"></i>
+                <h3 style="font-size: 18px; font-weight: 700; color: var(--primary); margin: 0;">Project Overview</h3>
+            </div>
+            <p class="overview-p" style="font-size: 15px; color: var(--text-sec); line-height: 1.75; margin: 0;">
+                Smart Lender AI is an advanced decision support system designed specifically for banking institutions to assess credit risk and evaluate loan eligibility in real-time. By leveraging supervised machine learning models trained on structural credit records, the system automates preliminary reviews, reduces human review bottlenecks, and maintains consistent risk management standards. 
+            </p>
+        </div>
+    </div>
+
+    <!-- Section 2: Project Features -->
+    <div class="home-section capabilities-section fade-in" style="padding-top: 40px; padding-bottom: 80px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Core Capabilities</h2>
+            <p class="section-subtitle-minimal">Discover the major features of Smart Lender AI.</p>
+        </div>
+        
+        <div class="features-grid-minimal" style="margin-top: 40px;">
+            <!-- Feature 1 -->
+            <div class="feature-card-minimal">
+                <div class="feature-icon-minimal feature-icon-blue">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3>Machine Learning</h3>
+                <p>Runs ensemble random forest classification models to determine safe applicant approval brackets.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card-minimal">
+                <div class="feature-icon-minimal feature-icon-indigo">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h3>Fast Prediction</h3>
+                <p>Instant scoring yields predictions in milliseconds, increasing credit team audit efficiency.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card-minimal">
+                <div class="feature-icon-minimal feature-icon-green">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Secure Analysis</h3>
+                <p>Operates entirely locally with client-side logging, keeping institutional and customer data safe.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card-minimal">
+                <div class="feature-icon-minimal feature-icon-orange">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3>Easy to Use</h3>
+                <p>Designed with intuitive sliders and asset checklists for clean credit workflow management.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Performance -->
+    <div class="home-section fade-in" style="padding-top: 40px; padding-bottom: 80px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Model Performance</h2>
+            <p class="section-subtitle-minimal">Machine Learning Model Performance statistics benchmarking defaults thresholds.</p>
+        </div>
+        
+        <div class="stats-grid-minimal" style="margin-top: 40px;">
+            <div class="stat-card-minimal">
+                <div class="stat-num-minimal">614</div>
+                <div class="stat-label-minimal">Training Records</div>
+            </div>
+            <div class="stat-card-minimal">
+                <div class="stat-num-minimal">85%</div>
+                <div class="stat-label-minimal">Prediction Accuracy</div>
+            </div>
+            <div class="stat-card-minimal">
+                <div class="stat-num-minimal">4</div>
+                <div class="stat-label-minimal">ML Algorithms</div>
+            </div>
+            <div class="stat-card-minimal">
+                <div class="stat-num-minimal">&lt;2 Seconds</div>
+                <div class="stat-label-minimal">Prediction Time</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Why Choose Smart Lender AI -->
+    <div class="home-section why-section fade-in" style="padding-top: 40px; padding-bottom: 80px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Why Choose Smart Lender AI</h2>
+            <p class="section-subtitle-minimal">Reasons to use this loan eligibility prediction system.</p>
+        </div>
+        
+        <div class="why-list-minimal" style="margin-top: 40px;">
+            <!-- Why Card 1 -->
+            <div class="why-card-minimal">
+                <div class="why-card-content">
+                    <div class="why-icon-minimal feature-icon-blue">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="why-text-block">
+                        <h4>Verified Prediction Logic</h4>
+                        <p>Our scoring model maps applicant profile details directly against established credit defaults matrices for top accuracy.</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right why-arrow-icon"></i>
+            </div>
+
+            <!-- Why Card 2 -->
+            <div class="why-card-minimal">
+                <div class="why-card-content">
+                    <div class="why-icon-minimal feature-icon-indigo">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="why-text-block">
+                        <h4>Income & Credit Assessment</h4>
+                        <p>Calculates household income metrics and debt margins against previous credit history data parameters.</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right why-arrow-icon"></i>
+            </div>
+
+            <!-- Why Card 3 -->
+            <div class="why-card-minimal">
+                <div class="why-card-content">
+                    <div class="why-icon-minimal feature-icon-green">
+                        <i class="fa-solid fa-circle-nodes"></i>
+                    </div>
+                    <div class="why-text-block">
+                        <h4>Prediction History</h4>
+                        <p>Access previous risk predictions inside a searchable local history logs panel, avoiding complex database configurations.</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right why-arrow-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Technologies Used -->
+    <div class="home-section fade-in" style="padding-top: 40px; padding-bottom: 80px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Technologies Used</h2>
+            <p class="section-subtitle-minimal">Smart Lender AI is built using modern open-source languages and frameworks.</p>
+        </div>
+        
+        <div class="tech-grid" style="margin-top: 40px;">
+            <!-- Python -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-brands fa-python"></i></div>
+                <div class="tech-info">
+                    <h4>Python</h4>
+                    <p>Core programming language powering the numerical analysis and backend logic.</p>
+                </div>
+            </div>
+            <!-- Flask -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-solid fa-cubes"></i></div>
+                <div class="tech-info">
+                    <h4>Flask</h4>
+                    <p>Micro-framework used for web server routing, templating, and serving predictions.</p>
+                </div>
+            </div>
+            <!-- Scikit-Learn -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-solid fa-gears"></i></div>
+                <div class="tech-info">
+                    <h4>Scikit-Learn</h4>
+                    <p>Standard library for ML pre-processing and pipeline modeling.</p>
+                </div>
+            </div>
+            <!-- Pandas -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-solid fa-table"></i></div>
+                <div class="tech-info">
+                    <h4>Pandas</h4>
+                    <p>High-performance data structure library used for cleaning tabular feature datasets.</p>
+                </div>
+            </div>
+            <!-- NumPy -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-solid fa-calculator"></i></div>
+                <div class="tech-info">
+                    <h4>NumPy</h4>
+                    <p>Fundamental package used for array mapping and scientific computing.</p>
+                </div>
+            </div>
+            <!-- XGBoost -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-solid fa-bolt-lightning"></i></div>
+                <div class="tech-info">
+                    <h4>XGBoost</h4>
+                    <p>State-of-the-art gradient boosting framework used to maximize predictive accuracy.</p>
+                </div>
+            </div>
+            <!-- HTML -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-brands fa-html5"></i></div>
+                <div class="tech-info">
+                    <h4>HTML5</h4>
+                    <p>Semantic markup structure powering layout views and browser layouts.</p>
+                </div>
+            </div>
+            <!-- CSS -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-brands fa-css3-alt"></i></div>
+                <div class="tech-info">
+                    <h4>CSS3</h4>
+                    <p>Vanilla design declarations, scroll blurs, and floating animations.</p>
+                </div>
+            </div>
+            <!-- JS -->
+            <div class="tech-card glass-card">
+                <div class="tech-icon-wrapper"><i class="fa-brands fa-js"></i></div>
+                <div class="tech-info">
+                    <h4>JavaScript</h4>
+                    <p>Client-side LocalStorage logger engines, search indices, and timeline modals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Machine Learning Workflow -->
+    <div class="home-section fade-in" style="padding-top: 40px; padding-bottom: 80px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Machine Learning Workflow</h2>
+            <p class="section-subtitle-minimal">Step-by-step pipeline from applicant files submission to credit risk prediction result.</p>
+        </div>
+        
+        <div class="workflow-timeline" style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 40px auto 0 auto;">
+            <!-- Step 1 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">01</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Dataset Collection</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Ingests historical loan portfolios containing 614 unique credit records.</p>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">02</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Data Preprocessing</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Cleans data rows, handles missing null values, and normalizes feature distributions.</p>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">03</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Feature Encoding</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Applies label encoding to categorical variables like Gender, Married, Dependents, and Property Area.</p>
+                </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">04</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Model Training</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Trains and benchmarks multiple algorithms (Decision Trees, Random Forest, KNN, XGBoost) to select the optimal model.</p>
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">05</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Prediction Execution</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Processes submitted applicant parameters against the best-performing model to evaluate risk levels in real-time.</p>
+                </div>
+            </div>
+            <!-- Step 6 -->
+            <div class="workflow-step-horizontal glass-card" style="display: flex; align-items: center; padding: 20px 30px; gap: 20px; border-radius: 16px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(37, 99, 235, 0.08); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;">06</div>
+                <div style="text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; font-size: 15.5px; color: var(--primary); font-weight: 700;">Loan Eligibility Result</h4>
+                    <p style="margin: 0; font-size: 13.5px; color: var(--text-sec); line-height: 1.45;">Displays the final decision (Approved/Rejected) and caches to local terminal storage logs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Future Enhancements -->
+    <div class="home-section fade-in" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--border);">
+        <div class="section-heading-minimal">
+            <h2 class="section-title-minimal">Future Enhancements</h2>
+            <p class="section-subtitle-minimal">Planned roadmap items to extend the operational intelligence of the risk engine.</p>
+        </div>
+        
+        <div class="future-grid-4-enhanced" style="margin-top: 40px;">
+            <div class="glass-card" style="padding: 24px; border-radius: 16px;">
+                <h4 style="font-size: 15px; margin-bottom: 8px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-qrcode" style="color: var(--secondary);"></i> OCR Upload
+                </h4>
+                <p style="font-size: 13px; color: var(--text-sec); line-height: 1.5; margin: 0;">Scan and auto-fill loan application forms from uploaded documents using text extraction tools.</p>
+            </div>
+            <div class="glass-card" style="padding: 24px; border-radius: 16px;">
+                <h4 style="font-size: 15px; margin-bottom: 8px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-file-pdf" style="color: var(--accent);"></i> PDF Reports
+                </h4>
+                <p style="font-size: 13px; color: var(--text-sec); line-height: 1.5; margin: 0;">Export structured risk assessment sheets and asset audits to printable PDF formats.</p>
+            </div>
+            <div class="glass-card" style="padding: 24px; border-radius: 16px;">
+                <h4 style="font-size: 15px; margin-bottom: 8px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-tags" style="color: #F59E0B;"></i> Multi Categories
+                </h4>
+                <p style="font-size: 13px; color: var(--text-sec); line-height: 1.5; margin: 0;">Train classification boundaries specifically for business, agriculture, mortgage, or home loans.</p>
+            </div>
+            <div class="glass-card" style="padding: 24px; border-radius: 16px;">
+                <h4 style="font-size: 15px; margin-bottom: 8px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-cloud-arrow-up" style="color: #EF4444;"></i> Cloud DB Sync
+                </h4>
+                <p style="font-size: 13px; color: var(--text-sec); line-height: 1.5; margin: 0;">Move logging logs from local client storage to secure Mongo/SQL database instances.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
