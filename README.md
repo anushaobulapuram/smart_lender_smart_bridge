@@ -53,3 +53,62 @@ The best-performing model (KNN) was saved and deployed.
 **Frontend:** HTML5, CSS3, JavaScript, Font Awesome
 
 ## Project Structure
+smart-lender/
+├── app.py                 # Flask application & routes
+├── train_model.py         # Model training & comparison script
+├── utils.py                # Helper functions
+├── requirements.txt
+├── loan_data.csv           # Training dataset
+├── models/
+│   ├── model.pkl            # Trained KNN model
+│   ├── encoder.pkl          # Label encoder
+│   └── scaler.pkl           # StandardScaler
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+└── templates/
+├── base.html
+├── index.html
+├── predict.html
+├── result.html
+├── about.html
+├── profile.html
+└── history.html
+## Getting Started
+
+### Prerequisites
+- Python 3.9+
+- pip
+
+### Installation
+
+```bash
+git clone https://github.com/anushaobulapuram/smart_lender_smart_bridge.git
+cd smart_lender_smart_bridge
+pip install -r requirements.txt
+```
+
+### Run the app
+
+```bash
+python app.py
+```
+
+Then open **http://127.0.0.1:5000** in your browser.
+
+### (Optional) Retrain the model
+
+```bash
+python train_model.py
+```
+
+This regenerates `models/model.pkl`, `models/encoder.pkl`, and `models/scaler.pkl`.
+
+## License
+
+This project is for educational purposes.
+
+## Author
+
+**Obulapuram Venkata Naga Surya Sai Anusha**
